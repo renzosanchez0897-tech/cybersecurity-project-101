@@ -107,15 +107,13 @@ set THREADS 10
  
 # Launch the brute-force attack
 run
-``` 
+```
+
+![Metasploit brute-force attack running](Screenshot%202026-03-24%20at%202.58.48%20PM.png)
+
 ### Step 6 — Verify Logs in Splunk
  
 After the attack runs, open `http://localhost:8000` in the Kali browser and run this search:
- 
-```splunk
-# Basic search — find all failed SSH password attempts
-index=main sourcetype=linux_secure "Failed password"
-```
  
 ```splunk
 # Advanced search — extract the attacker's IP and count attempts
@@ -125,6 +123,11 @@ index=main sourcetype=linux_secure "Failed password" | rex "from (?P<src_ip>\d+\
 ```
  
 **Result:** Splunk detected **31+ failed SSH login attempts** from `10.0.2.15` — the simulated attacker IP.
+
+ ![Splunk failed login events](Screenshot%202026-03-24%20at%202.59.53%20PM.png)
+
+ ![Splunk statistics by IP](Screenshot%202026-03-24%20at%203.05.16%20PM.png)
+
  
 ### Step 7 — Create a Threshold-Based Alert
  
@@ -140,6 +143,8 @@ In Splunk, I created an automated alert that triggers when brute-force activity 
 | **Action** | Log Event |
  
 > I adopted a threshold of 5 because a single failed login is normal (mistyped password). Five or more failed attempts from the same IP in a short window is a strong indicator of automated brute-force activity.
+
+ ![SSH Brute-Force Detection Alert](Screenshot%202026-03-24%20at%203.09.37%20PM.png)
  
 ---
  
