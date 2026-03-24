@@ -124,7 +124,7 @@ index=main sourcetype=linux_secure "Failed password"
 index=main sourcetype=linux_secure "Failed password" | rex "from (?P<src_ip>\d+\.\d+\.\d+\.\d+)" | stats count by src_ip
 ```
  
-**Result:** Splunk detected **23+ failed SSH login attempts** from `10.0.2.15` — the simulated attacker IP.
+**Result:** Splunk detected **31+ failed SSH login attempts** from `10.0.2.15` — the simulated attacker IP.
  
 ### Step 7 — Create a Threshold-Based Alert
  
@@ -146,7 +146,7 @@ In Splunk, I created an automated alert that triggers when brute-force activity 
 ##Results
  
 - Splunk successfully ingested SSH authentication logs from `auth.log`
-- Metasploit generated realistic brute-force traffic (23+ failed attempts)
+- Metasploit generated realistic brute-force traffic (31+ failed attempts)
 - Splunk search accurately identified the attacker IP and attempt count
 - Threshold-based alert configured to fire when attempts exceed 5
 - Alert is enabled and running on an hourly schedule
