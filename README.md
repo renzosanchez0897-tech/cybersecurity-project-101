@@ -164,7 +164,7 @@ In Splunk, I created an automated alert that triggers when brute-force activity 
 
 ---
  
-## 👤 Author
+## Author
  
 **Renzo Sanchez**  
 Cybersecurity enthusiast building a home lab to develop real-world SOC and penetration testing skills.
